@@ -30,7 +30,7 @@ function fetchProductsAndDisplay() {
       // Loop through each product and create an HTML element to display it.
       data.forEach((product) => {
         const productDiv = document.createElement("div");
-        productDiv.classList.add("product");
+        productDiv.classList.add("product", "col-lg-6");
 
         productDiv.setAttribute("data-product-name", product.name);
 
@@ -41,10 +41,6 @@ function fetchProductsAndDisplay() {
         const priceElement = document.createElement("p");
         priceElement.textContent = `Price: $${product.price}`;
         productDiv.appendChild(priceElement);
-
-        const descElement = document.createElement("p");
-        descElement.textContent = product.desc;
-        productDiv.appendChild(descElement);
 
         const imgElement = document.createElement("img");
         imgElement.src = product.img;
