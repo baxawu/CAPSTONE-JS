@@ -1,0 +1,13 @@
+@mixin responsive($screen){
+    @if(map-has-key($map: $breakpoints, $key: $screen )) {
+        // $screen hợp lệ, có trong mảng breakpoints
+        // Lấy ra giá trị của biến screen trong mảng breakpoints
+    $width : map-get($map: $breakpoints, $key: $screen );
+    
+    @media screen and (min-width: $width) {
+        @content;
+    }
+    } @else {
+        @warn "invalid screen";
+    }
+    }
