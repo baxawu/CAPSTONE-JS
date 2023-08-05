@@ -1,6 +1,6 @@
 let openShopping = document.querySelector(".shopping");
 let closeShopping = document.querySelector(".closeShopping");
-// let list = document.querySelector(".list");
+let list = document.querySelector(".list");
 let listCard = document.querySelector(".listCard");
 let body = document.querySelector("body");
 let total = document.querySelector(".total");
@@ -15,19 +15,20 @@ closeShopping.addEventListener("click", () => {
 
 const products = [];
 function fetchProductsAndDisplay() {
-  // Replace 'your-api-url' with the actual URL of the API you want to fetch from.
+  // Thay thế 'your-api-url' bằng URL thực tế của API mà bạn muốn lấy dữ liệu từ.
+
   const apiUrl = "https://64a6ad14096b3f0fcc8042da.mockapi.io/capstoneJS";
 
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      // 'data' contains the JSON response from the API.
-      // Assuming the API response is an array of product objects.
-
+      // 'data' chứa phản hồi JSON từ API.
+      // Giả sử phản hồi từ API là một mảng các đối tượng sản phẩm.
       const productListDiv = document.getElementById("list");
-      productListDiv.innerHTML = ""; // Clear previous content (if any).
+      productListDiv.innerHTML = ""; // Xóa nội dung trước đó (nếu có).
 
-      // Loop through each product and create an HTML element to display it.
+      // Duyệt qua từng sản phẩm và tạo một phần tử HTML để hiển thị nó.
+
       data.forEach((product) => {
         const productDiv = document.createElement("div");
         productDiv.classList.add("product", "col-lg-6");
@@ -63,10 +64,11 @@ function fetchProductsAndDisplay() {
     });
 }
 
-// Call the function to display the products when the page loads.
+// Gọi hàm để hiển thị các sản phẩm khi trang được tải.
+
 fetchProductsAndDisplay();
 
-const cartItems = [];
+const cartItems = loadCartItemsFromLocalStorage();
 
 function addToCart(product) {
   const existingItem = cartItems.find((item) => item.id === product.id);
@@ -77,6 +79,7 @@ function addToCart(product) {
     cartItems.push(product);
   }
   updateCartDisplay();
+  saveCartItemsToLocalStorage();
 }
 
 function removeFromCart(productId) {
@@ -85,6 +88,7 @@ function removeFromCart(productId) {
     cartItems.splice(index, 1);
   }
   updateCartDisplay();
+  saveCartItemsToLocalStorage();
 }
 
 function increaseQuantity(productId) {
@@ -93,6 +97,7 @@ function increaseQuantity(productId) {
     item.quantity++;
   }
   updateCartDisplay();
+  saveCartItemsToLocalStorage();
 }
 
 function decreaseQuantity(productId) {
@@ -101,6 +106,7 @@ function decreaseQuantity(productId) {
     item.quantity--;
   }
   updateCartDisplay();
+  saveCartItemsToLocalStorage();
 }
 
 function updateCartDisplay() {
@@ -122,6 +128,7 @@ function updateCartDisplay() {
     })`;
 
     const removeButton = document.createElement("button");
+    removeButton.classList.add("btn-remove");
     removeButton.textContent = "Remove";
     removeButton.addEventListener("click", () => {
       removeFromCart(item.id);
@@ -130,6 +137,7 @@ function updateCartDisplay() {
 
     const increaseButton = document.createElement("button");
     increaseButton.textContent = "+";
+
     increaseButton.addEventListener("click", () => {
       increaseQuantity(item.id);
     });
@@ -167,7 +175,58 @@ selectPhone.addEventListener("change", function () {
   displayProductsByName(selectedValue);
 });
 
+const checkoutButton = document.getElementById("checkoutButton");
+checkoutButton.addEventListener("click", () => {
+  checkout();
+});
+
+function checkout() {
+  if (cartItems.length === 0) {
+    // Show a pop-up for failed payment
+    showPaymentStatus("Thanh toán thất bại vì giỏ hàng của bạn trống!");
+    return;
+  }
+
+  // You can add the payment processing logic here.
+  // For the purpose of this example, let's assume the payment is successful.
+  // You can replace the following setTimeout with actual payment processing logic.
+  setTimeout(() => {
+    // Clear the cart after successful payment
+    cartItems.length = 0;
+    updateCartDisplay();
+    // Show a pop-up for successful payment
+    showPaymentStatus("Thanh toán thành công!");
+  }, 1000); // Delay for 2 seconds to simulate payment processing
+}
+
+function showPaymentStatus(message) {
+  const paymentModal = document.getElementById("paymentModal");
+  const paymentStatus = document.getElementById("paymentStatus");
+  paymentStatus.textContent = message;
+  paymentModal.style.display = "block";
+
+  const closeModalButton = document.querySelector(".closeModal");
+  closeModalButton.addEventListener("click", () => {
+    paymentModal.style.display = "none";
+  });
+
+  // Hide the modal after 3 seconds
+  setTimeout(() => {
+    paymentModal.style.display = "none";
+  }, 2000);
+}
+
+function saveCartItemsToLocalStorage() {
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
+
+function loadCartItemsFromLocalStorage() {
+  const storedItems = localStorage.getItem("cartItems");
+  return storedItems ? JSON.parse(storedItems) : [];
+}
+
 window.onload = () => {
-  // Ban đầu, hiển thị tất cả sản phẩm
+  updateCartDisplay();
+  fetchProductsAndDisplay();
   displayProductsByName("All");
 };

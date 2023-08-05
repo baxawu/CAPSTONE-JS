@@ -4,6 +4,36 @@
   box-sizing: border-box;
 }
 
+.modal {
+  /* Set the modal to cover the whole screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none; /* Hide the modal by default */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.closeModal {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 body {
   background-color: white;
   font-family: system-ui;
@@ -65,7 +95,7 @@ header .shopping span {
 
 .list .item {
   text-align: center;
-  background-color: #DCE0E1;
+  background-color: #dce0e1;
   padding: 20px;
   box-shadow: 0 50px 50px #757676;
   letter-spacing: 1px;
@@ -87,7 +117,7 @@ header .shopping span {
 }
 
 .list .item button {
-  background-color: #1C1F25;
+  background-color: #1c1f25;
   color: #fff;
   width: 100%;
   padding: 10px;
@@ -98,7 +128,7 @@ header .shopping span {
   top: 0;
   left: 100%;
   width: 500px;
-  background-color: #656774;
+  background-color: rgba(101, 103, 116, 0.6352941176);
   height: 100vh;
   transition: 0.5s;
 }
@@ -137,7 +167,7 @@ header .shopping span {
 }
 
 .card .checkOut div:nth-child(2) {
-  background-color: #1C1F25;
+  background-color: #1c1f25;
   color: #fff;
 }
 
@@ -158,9 +188,20 @@ header .shopping span {
   width: 90%;
 }
 
+.listCard {
+  justify-content: center;
+}
 .listCard li button {
   background-color: rgba(255, 255, 255, 0.3333333333);
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  line-height: 50px;
+  width: 80px;
+  height: 80px;
+}
+.listCard li .btn-remove {
+  color: #fff;
+  background-color: rgba(255, 0, 0, 0.247);
 }
 
 .listCard .count {
@@ -189,7 +230,7 @@ header .shopping span {
   cursor: pointer;
 }
 .icon span {
-  color: #656774;
+  color: rgba(101, 103, 116, 0.6352941176);
   font-size: 1.6rem;
   margin-top: 20px;
 }

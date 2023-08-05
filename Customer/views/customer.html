@@ -57,9 +57,9 @@
       <div class="findArea">
         <div class="container">
           <select name="" id="selectPhone">
-            <option value="All">Products Type</option>
-            <option value="Iphone">Iphone</option>
-            <option value="Samsung">Samsung</option>
+            <option value="All">All</option>
+            <option value="Apple">Apple</option>
+            <option value="SamSung">SamSung</option>
           </select>
         </div>
       </div>
@@ -69,10 +69,18 @@
       <h1>Giỏ hàng</h1>
       <ul id="cartList" class="listCard"></ul>
       <div class="checkOut">
-        <div class="total">Thanh toán</div>
+        <div id="checkoutButton" class="total">Thanh toán</div>
         <div class="closeShopping">Đóng</div>
       </div>
     </div>
+
+    <div class="modal" id="paymentModal">
+      <div class="modal-content">
+        <span class="closeModal">&times;</span>
+        <h2 id="paymentStatus"></h2>
+      </div>
+    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
