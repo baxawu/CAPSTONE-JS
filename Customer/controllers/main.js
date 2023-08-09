@@ -169,7 +169,7 @@ function SelectProduct() {
 
 // Hàm để xử lý sự kiện khi chọn option trong select
 function onProductSelectChange() {
-  const productSelect = document.getElementById("selectPhone");
+  const productSelect = document.getElementById("productSelect");
   const selectedProduct = productSelect.value;
 
   if (selectedProduct === "Iphone") {
@@ -192,7 +192,7 @@ function onProductSelectChange() {
       });
   } else {
     // Xuất ra tất cả sản phẩm
-    getProductsForShop();
+    fetchProductsAndDisplay();
   }
 }
 
