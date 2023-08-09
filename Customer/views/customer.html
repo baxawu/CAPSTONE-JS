@@ -54,28 +54,31 @@
         </div>
       </header>
 
-      <div class="findArea">
-        <div class="container">
-          <select id="productSelect">
-            <option value="active">Chọn loại sản phẩm</option>
-            <option
-              onchange="onProductSelectChange()"
-              class="type"
-              value="Iphone"
-            >
-              Iphone
-            </option>
-            <option
-              onchange="onProductSelectChange()"
-              class="type"
-              value="Samsung"
-            >
-              Samsung
-            </option>
-          </select>
+      <div class="container">
+        <select id="productSelect">
+          <option value="active">Chọn loại sản phẩm</option>
+          <option
+            onchange="onProductSelectChange()"
+            class="type"
+            value="Iphone"
+          >
+            Iphone
+          </option>
+          <option
+            onchange="onProductSelectChange()"
+            class="type"
+            value="Samsung"
+          >
+            Samsung
+          </option>
+        </select>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div id="list" class="container list"></div>
         </div>
       </div>
-      <div id="list" class="container list"></div>
     </div>
     <div id="cart" class="card">
       <h1>Giỏ hàng</h1>

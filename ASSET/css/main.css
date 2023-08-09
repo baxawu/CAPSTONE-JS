@@ -39,12 +39,6 @@ body {
   font-family: system-ui;
 }
 
-.container {
-  width: 1000px;
-  margin: auto;
-  transition: 0.5s;
-}
-
 header {
   display: grid;
   grid-template-columns: 1fr 50px;
@@ -74,23 +68,49 @@ header .shopping span {
   padding: 3px 10px;
 }
 
+.product {
+  width: 100%;
+  transition: all 1s;
+  transform: translateY(0);
+}
 .product img {
   width: 300px;
-  height: 300px;
 }
 .product h2 {
-  font-size: 30px;
+  font-size: 25px;
+}
+.product:hover {
+  transform: translateY(-20px);
 }
 
 .list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   -moz-column-gap: 20px;
        column-gap: 20px;
-  gap: 50px;
+  gap: 30px;
   margin-top: 50px;
   justify-content: center;
   align-items: center;
+}
+@media screen and (min-width: 576px) {
+  .list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (min-width: 758px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 992px) {
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .list {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .list .item {
@@ -209,7 +229,14 @@ header .shopping span {
 }
 
 .btn {
-  margin-top: 20px;
+  margin: 20px;
+  display: block;
+  text-align: center;
+  transition: all 0.5s;
+}
+.btn:hover {
+  background-color: rgb(144, 228, 144);
+  color: white;
 }
 
 .product {
