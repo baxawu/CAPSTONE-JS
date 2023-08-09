@@ -31,9 +31,7 @@ function fetchProductsAndDisplay() {
 
       data.forEach((product) => {
         const productDiv = document.createElement("div");
-        productDiv.classList.add("product", "col-lg-6");
-
-        productDiv.setAttribute("data-product-name", product.name);
+        productDiv.classList.add("product");
 
         const nameElement = document.createElement("h2");
         nameElement.textContent = product.name;
@@ -48,6 +46,7 @@ function fetchProductsAndDisplay() {
         productDiv.appendChild(imgElement);
 
         const addToCartButton = document.createElement("button");
+        document.createElement("button");
         addToCartButton.classList.add("btn");
 
         addToCartButton.textContent = "Add to Cart";
@@ -154,26 +153,52 @@ function updateCartDisplay() {
   });
 }
 
-function displayProductsByName(productName) {
-  const menuItems = document.querySelectorAll(".list .product");
+// Hàm select product để kiểm tra option
+function SelectProduct() {
+  const productSelect = document.getElementById("type");
+  const selectedProduct = [];
 
-  menuItems.forEach((item) => {
-    const productNameAttribute = item.getAttribute("data-product-name");
-
-    if (productName === "All" || productName === productNameAttribute) {
-      item.style.display = "block";
-    } else {
-      item.style.display = "none";
+  for (let i = 0; i < productSelect.length; i++) {
+    if (productSelect[i].checked) {
+      selectedProduct.push(productSelect[i].value);
     }
-  });
+  }
+  console.log(selectedProduct);
+  fetchProductsAndDisplay(selectedProduct);
 }
 
-const selectPhone = document.getElementById("selectPhone");
-selectPhone.addEventListener("change", function () {
-  const selectedValue = this.value;
-  console.log(selectedValue); // Xem giá trị đã chọn trong console để kiểm tra
-  displayProductsByName(selectedValue);
-});
+// Hàm để xử lý sự kiện khi chọn option trong select
+function onProductSelectChange() {
+  const productSelect = document.getElementById("selectPhone");
+  const selectedProduct = productSelect.value;
+
+  if (selectedProduct === "Iphone") {
+    // Xuất ra sản phẩm của iPhone
+    apiGetProducts(selectedProduct)
+      .then((response) => {
+        fetchProductsAndDisplay(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else if (selectedProduct === "Samsung") {
+    // Xuất ra sản phẩm của Samsung
+    apiGetProducts(selectedProduct)
+      .then((response) => {
+        fetchProductsAndDisplay(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else {
+    // Xuất ra tất cả sản phẩm
+    getProductsForShop();
+  }
+}
+
+// Gán sự kiện onchange cho select
+const productSelect = document.getElementById("productSelect");
+productSelect.addEventListener("change", onProductSelectChange);
 
 const checkoutButton = document.getElementById("checkoutButton");
 checkoutButton.addEventListener("click", () => {
@@ -228,5 +253,4 @@ function loadCartItemsFromLocalStorage() {
 window.onload = () => {
   updateCartDisplay();
   fetchProductsAndDisplay();
-  displayProductsByName("All");
 };

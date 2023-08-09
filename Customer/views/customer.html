@@ -56,14 +56,26 @@
 
       <div class="findArea">
         <div class="container">
-          <select name="" id="selectPhone">
-            <option value="All">All</option>
-            <option value="Apple">Apple</option>
-            <option value="SamSung">SamSung</option>
+          <select id="productSelect">
+            <option value="active">Chọn loại sản phẩm</option>
+            <option
+              onchange="onProductSelectChange()"
+              class="type"
+              value="Iphone"
+            >
+              Iphone
+            </option>
+            <option
+              onchange="onProductSelectChange()"
+              class="type"
+              value="Samsung"
+            >
+              Samsung
+            </option>
           </select>
         </div>
       </div>
-      <div id="list" class="container list row"></div>
+      <div id="list" class="container list"></div>
     </div>
     <div id="cart" class="card">
       <h1>Giỏ hàng</h1>

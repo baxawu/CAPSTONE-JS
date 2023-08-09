@@ -33,22 +33,23 @@ header .shopping span {
   padding: 3px 10px;
 }
 .product {
-  text-align: center;
   img {
     width: 300px;
     height: 300px;
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-      rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  }
+  h2{
+    font-size: 30px;
   }
 }
 
 .list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 20px;
-  row-gap: 20px;
+  gap: 50px;
   margin-top: 50px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 .list .item {
   text-align: center;
@@ -156,3 +157,6 @@ header .shopping span {
   margin-top: 20px;
 }
 
+.product{
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
